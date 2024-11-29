@@ -1,0 +1,26 @@
+
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ñ„ïšûÿÿÿÿ8…¬ƒà²2J$295e349a-1f0b-4059-8c25-f37ec6ea403c
+•
+java:S6204/"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8¥¢¸à²2J$4f11f38e-ca7e-4446-b0fa-b1791bfb4979
+y
+java:S18745"1Remove this use of "setClaims"; it is deprecated.(Ûªæ§ûÿÿÿÿ8”¬ƒà²2J$a9e09bca-ac7d-4b05-9233-edb781c91311
+u
+java:S18746"2Remove this use of "setSubject"; it is deprecated.(òÃêù8”¬ƒà²2J$5a681c1a-34b5-40ae-a124-624ea9f112b8
+v
+java:S18747"3Remove this use of "setIssuedAt"; it is deprecated.(øÔ÷ò8å¢ÿ¯´2J$80eab18a-66bf-482c-9eb7-83c90b89c746
+}
+java:S18748"5Remove this use of "setExpiration"; it is deprecated.(’·”€þÿÿÿÿ8æ¢ÿ¯´2J$6c8b1f4f-9a96-4e60-a273-b4b5555fe5df
+s
+java:S18749"0Remove this use of "signWith"; it is deprecated.(ÅþØ·8•¬ƒà²2J$a1373d6e-0037-4dc9-964e-fc2b304a0f8e
+}
+java:S18749":Remove this use of "SignatureAlgorithm"; it is deprecated.(ÅþØ·8•¬ƒà²2J$47d6185c-0857-4916-b6c2-c440d7ad0805
+}
+java:S18749":Remove this use of "SignatureAlgorithm"; it is deprecated.(ÅþØ·8è¢ÿ¯´2J$0c3e034f-be12-4470-815c-eefe88500884
+x
+java:S1874K"5Remove this use of "setSigningKey"; it is deprecated.(™¥ü©8—¬ƒà²2J$712e3e07-5710-4f26-a41b-d055b3e8e047
+y
+java:S1874K"6Remove this use of "parseClaimsJws"; it is deprecated.(™¥ü©8—¬ƒà²2J$41d45c14-97cb-4eaf-99fd-b3f1461aaf83
+r
+java:S1874K"/Remove this use of "getBody"; it is deprecated.(™¥ü©8—¬ƒà²2J$2d1cefcb-c4f1-42ba-ad27-641de5ce0455
+’
+java:S1128	"ORemove this unused import 'org.springframework.security.core.GrantedAuthority'.(½Á±ÿ8’´æÆ´2J$3802c0d7-4a13-4810-b70d-72163bbe33c7

@@ -1,0 +1,9 @@
+
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ñ„ïšûÿÿÿÿ8Žš·ß²2J$242fe115-ad54-4ba7-9193-f04c2cf27815
+ƒ	java:S125 "<This block of commented-out lines of code should be removed.(ÇÛËóúÿÿÿÿ8•ïØ¾¶2J$87f45fe0-fefe-44f3-a9be-9a0f96b1b963
+ƒ	java:S125&"<This block of commented-out lines of code should be removed.(¨Ì“äúÿÿÿÿ8È©Ù¾¶2J$8e7e63b5-95b1-4c91-8f51-6b81aa6de19c
+ƒ	java:S1250"<This block of commented-out lines of code should be removed.(Üø¯Ïúÿÿÿÿ8½ÕÙ¾¶2J$dbe9773c-d90b-4251-9d5a-0af0bc4b4661
+•
+java:S6204:"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8ì€°´2J$e34d7106-1c91-4b81-a872-e147fe2e4ba0
+“
+java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.CrossOrigin'.(º´Ñ†8¸õ°¶2J$b067d83c-8255-456a-a9e6-7110d531073a
