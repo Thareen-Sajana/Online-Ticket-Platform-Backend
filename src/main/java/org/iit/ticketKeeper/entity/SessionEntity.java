@@ -25,6 +25,7 @@ public class SessionEntity {
     private String eventDate;
     private String eventDescription;
     private String imageType;
+    private Boolean isStarted;
 
     @Lob
     private byte[] ticketImage;
