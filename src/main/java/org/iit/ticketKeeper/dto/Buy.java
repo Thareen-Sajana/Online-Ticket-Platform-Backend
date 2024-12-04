@@ -9,4 +9,5 @@ public class Buy {
 
     Long id;
     Integer qty;
+    String email;
 }

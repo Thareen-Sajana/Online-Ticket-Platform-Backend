@@ -95,6 +95,9 @@ public class SessionService {
         Optional<SessionEntity> session = repository.findById(id);
         if(session.isPresent()){
             Integer newTotalTickets = session.get().getTotalTicket() - qty;
+
+            if (newTotalTickets <= 0) newTotalTickets = 0;
+
             session.get().setTotalTicket(newTotalTickets);
 
             repository.save(session.get());

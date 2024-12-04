@@ -8,20 +8,17 @@ import org.iit.ticketKeeper.dto.Buy;
 import org.iit.ticketKeeper.dto.Session;
 import org.iit.ticketKeeper.dto.SessionManage;
 import org.iit.ticketKeeper.dto.User;
-import org.iit.ticketKeeper.protection.BuyDetailProtection;
-import org.iit.ticketKeeper.repository.SessionRepository;
+import org.iit.ticketKeeper.service.PurchaseService;
 import org.iit.ticketKeeper.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
@@ -32,7 +29,10 @@ public class SessionController {
     private Map<Long, TicketPool> ticketPools = new HashMap();
 
     @Autowired
-    private SessionService service;
+    private SessionService sessionService;
+
+    @Autowired
+    private PurchaseService purchaseService;
 
     @PostMapping("/session")
     public ResponseEntity<Map<String, String>> createSession(@RequestParam("ticketImage") MultipartFile file,  @RequestParam("userData") String userData) {
@@ -51,7 +51,7 @@ public class SessionController {
             eventDetails.setImageType(file.getContentType());
             eventDetails.setTicketImage(file.getBytes());
 
-            service.saveSession(eventDetails);
+            sessionService.saveSession(eventDetails);
             response.put("message", "Done");
             return ResponseEntity.ok(response);
 
@@ -65,7 +65,7 @@ public class SessionController {
     @GetMapping("/data")
     public ResponseEntity<Map<String, List<Session>>> getSessionData(){
         Map<String, List<Session>> response = new HashMap<>();
-        List<Session> sessions = service.getSessionDetails();
+        List<Session> sessions = sessionService.getSessionDetails();
 
         response.put("data", sessions);
         return ResponseEntity.ok(response);
@@ -74,7 +74,7 @@ public class SessionController {
     @GetMapping("/data/{id}")
     public ResponseEntity<Map<String , Session>> getSessionById(@PathVariable Long id){
         System.out.println("this is id : " + id.getClass().getName());
-        Session session = service.getSessionById(id);
+        Session session = sessionService.getSessionById(id);
         Map<String , Session> response = new HashMap<>();
 
         if (session == null)  ResponseEntity.notFound().build();
@@ -87,7 +87,7 @@ public class SessionController {
     public ResponseEntity<Map<String, List<SessionManage>>> getVendorSessionData(@RequestBody User user){
         Map<String, List<SessionManage>> response = new HashMap<>();
         System.out.println("this is required endpoint : *************************");
-        List<SessionManage> sessions = service.getSessionDataByEmail(user);
+        List<SessionManage> sessions = sessionService.getSessionDataByEmail(user);
 
         response.put("data", sessions);
         return ResponseEntity.ok(response);
@@ -96,7 +96,7 @@ public class SessionController {
     @GetMapping("/remove-session/{id}")
     public ResponseEntity<Map<String , String >> removeSession(@PathVariable Long id){
         System.out.println("this is id : " + id.getClass().getName());
-        service.removeSession(id);
+        sessionService.removeSession(id);
         Map<String , String > response = new HashMap<>();
 
         response.put("data", "Done");
@@ -107,13 +107,13 @@ public class SessionController {
     @GetMapping("/start-session/{id}")
     public ResponseEntity<Map<String , String >> startSession(@PathVariable Long id){
         System.out.println("this is id : " + id.getClass().getName());
-        service.startSession(id);
+        sessionService.startSession(id);
         Map<String , String > response = new HashMap<>();
 
-        Session session = service.getSessionById(id);
+        Session session = sessionService.getSessionById(id);
 
         if(!ticketPools.containsKey(id)){
-            TicketPool pool = new TicketPool(service, session.getTicketPoolCapacity(), id);
+            TicketPool pool = new TicketPool(sessionService, session.getTicketPoolCapacity(), id);
 
             Runnable producer = new Producer(pool, session.getTotalTicket(),session.getTicketReleaseRate()*1000);
             ticketPools.put(id, pool);
@@ -132,7 +132,7 @@ public class SessionController {
     @GetMapping("/stop-session/{id}")
     public ResponseEntity<Map<String , String >> stopSession(@PathVariable Long id){
         System.out.println("this is id : " + id.getClass().getName());
-        service.stopSession(id);
+        sessionService.stopSession(id);
         Map<String , String > response = new HashMap<>();
 
         response.put("data", "Done");
@@ -159,11 +159,14 @@ public class SessionController {
     @PostMapping("/buy")
     public ResponseEntity<Map<String , String >> buy(@RequestBody Buy request){
         System.out.println("this is working qty");
+        System.out.println("this is buyer email : "+ request.getEmail());
         Map<String , String > response = new HashMap<>();
 //        Optional<BuyDetailProtection> data = repository.findBySessionId(request.getId());
 //        System.out.println("this is data : "+ data.get().getTicketPoolCapacity());
 
-        Session session = service.getSessionById(request.getId());
+        purchaseService.savePurchase(request.getId(), request.getEmail(), request.getQty());
+
+        Session session = sessionService.getSessionById(request.getId());
 
         Runnable consumer = new Consumer(ticketPools.get(request.getId()), request.getQty(), session.getCustomerReleaseRate()*1000);
         Thread thread = new Thread(consumer);

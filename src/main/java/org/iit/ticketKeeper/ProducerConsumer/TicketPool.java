@@ -1,10 +1,7 @@
 package org.iit.ticketKeeper.ProducerConsumer;
 
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.iit.ticketKeeper.service.SessionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +12,7 @@ import java.util.List;
 public class TicketPool {
 
 
-    private SessionService service;
+    private SessionService sessionService;
 
     private List tickets;
     //private int totalTickets;
@@ -30,7 +27,7 @@ public class TicketPool {
         this.ticketPoolCapacity = ticketPoolCapacity;
         this.tickets = Collections.synchronizedList(new ArrayList<>());
         this.sessionId = sessionId;
-        this.service = service;
+        this.sessionService = service;
         this.count = 1;
     }
 
@@ -60,7 +57,7 @@ public class TicketPool {
         }
 
         String removedElement = (String) tickets.remove(0);
-        service.updateTotalTicket(sessionId, 1);
+        sessionService.updateTotalTicket(sessionId, 1);
         System.out.println("Removed : " + removedElement);
         notifyAll();
 

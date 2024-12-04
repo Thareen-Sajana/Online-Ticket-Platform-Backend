@@ -110,3 +110,17 @@ _
 /src/main/java/org/iit/ticketKeeper/dto/Buy.java,9\9\99d66dd0ddda05dcca75172fe59dbf82573229d1
 v
 Fsrc/main/java/org/iit/ticketKeeper/protection/BuyDetailProtection.java,7\2\72ef72ed7255ae8187b9deb0643123d2fefe63a7
+u
+Esrc/main/java/org/iit/ticketKeeper/repository/purchaseRepository.java,a\a\aa4db0e7c77127191cbb075140f4d08cc39d0513
+u
+Esrc/main/java/org/iit/ticketKeeper/repository/PurchaseRepository.java,d\4\d4bab6ae65aaf3d3821f61c95ab8bc83ea0516a8
+m
+=src/main/java/org/iit/ticketKeeper/entity/PurchaseEntity.java,2\2\220e2aa9eee57f2fc5fa7d3b6387fd324c4b5c04
+d
+4src/main/java/org/iit/ticketKeeper/dto/Purchase.java,4\b\4b75231e5477c0b6bc21ec8b7ff5a28f3a24f671
+o
+?src/main/java/org/iit/ticketKeeper/service/PurchaseService.java,3\4\347ae8fb4bf403d4fb1ce5b1be057d22709177e9
+k
+;src/main/java/org/iit/ticketKeeper/dto/PurchaseHistory.java,0\7\07a7e5e0c8806a6756900ff343622ad32bee8525
+~
+Nsrc/main/java/org/iit/ticketKeeper/controller/customer/PurchaseController.java,8\0\80a6c9f7c88d925e6832c8fccf6e58ea815291db
