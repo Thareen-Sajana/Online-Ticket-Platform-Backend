@@ -10,9 +10,12 @@ import org.iit.ticketKeeper.dto.SessionManage;
 import org.iit.ticketKeeper.dto.User;
 import org.iit.ticketKeeper.service.PurchaseService;
 import org.iit.ticketKeeper.service.SessionService;
+import org.iit.ticketKeeper.service.WebSocketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +36,9 @@ public class SessionController {
 
     @Autowired
     private PurchaseService purchaseService;
+
+    @Autowired
+    private WebSocketService webSocketService;
 
     @PostMapping("/session")
     public ResponseEntity<Map<String, String>> createSession(@RequestParam("ticketImage") MultipartFile file,  @RequestParam("userData") String userData) {
@@ -172,9 +178,38 @@ public class SessionController {
         Thread thread = new Thread(consumer);
         thread.start();
 
+
+//        Integer qty = webSocketService.fetchQtyForSession(String.valueOf(request.getId()));
+//
+//        System.out.println("\n\n\n\n\n\n\n\n*************** this is the QTY : " + qty);
+//        webSocketService.sendQty(String.valueOf(request.getId()), qty);
         response.put("data", "You buy " + request.getQty() + " tickets and ID : " + request.getId());
         return ResponseEntity.ok(response);
     }
+
+
+    // Endpoint to handle requests for qty based on sessionId
+    @MessageMapping("/get-qty")
+    @SendToUser("/notification")
+    public void getQty(String sessionId) {
+        System.out.println("\n\n\n\n\n\n\n\n****************Received sessionId: " + sessionId);
+        // Replace this with your logic to get qty for the sessionId
+//        Integer qty = webSocketService.fetchQtyForSession(sessionId);
+//
+//        System.out.println("this is the QTY : " + qty);
+//        webSocketService.sendQty(sessionId, qty);
+    }
+
+//    private TicketWebSocketHandler ticketWebSocketHandler;
+//    @Autowired
+//    public SessionController(WebSocketHandler ticketWebSocketHandler) {
+//        this.ticketWebSocketHandler = (TicketWebSocketHandler) ticketWebSocketHandler;
+//    }
+
+//    @PostMapping("/update-tickets/{totalTickets}")
+//    public void updateTickets(@PathVariable Integer totalTickets) throws Exception {
+//        ticketWebSocketHandler.broadcastTicketUpdate(totalTickets);
+//    }
 
     @GetMapping("/hello")
     public String hello(){

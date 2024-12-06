@@ -60,12 +60,12 @@ public class PurchaseService {
 
         if (user.isPresent()) {
             List<PurchaseEntity> purchaseEntities = purchaseRepository.findByUserId(user.get().getId());
-
+            System.out.println("this is entities : "+ purchaseEntities);
             if(!purchaseEntities.isEmpty()){
                 for (PurchaseEntity purchase : purchaseEntities) {
 
-                    Optional<SessionEntity> session = sessionRepository.findById(purchase.getId());
-
+                    Optional<SessionEntity> session = sessionRepository.findById(purchase.getSessionId());
+                    System.out.println("this is session " + session.get().getEventName());
                     if (session.isPresent()){
                         PurchaseHistory purchaseHistory = new PurchaseHistory();
 
@@ -75,6 +75,7 @@ public class PurchaseService {
                         purchaseHistory.setDate(session.get().getEventDate());
                         purchaseHistory.setCategory(session.get().getCategory());
                         purchaseHistory.setPrice(session.get().getTicketPrice());
+                        purchaseHistory.setImageType(session.get().getImageType());
                         purchaseHistory.setImage(session.get().getTicketImage());
 
                         purchases.add(purchaseHistory);
@@ -84,6 +85,7 @@ public class PurchaseService {
             }
 
         }
+        System.out.println("this is all purchases : " + purchases);
         return purchases;
     }
 

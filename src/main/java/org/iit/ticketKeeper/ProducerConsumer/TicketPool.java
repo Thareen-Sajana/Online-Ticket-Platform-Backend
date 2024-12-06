@@ -2,6 +2,7 @@ package org.iit.ticketKeeper.ProducerConsumer;
 
 import lombok.ToString;
 import org.iit.ticketKeeper.service.SessionService;
+import org.iit.ticketKeeper.service.WebSocketService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,6 +59,7 @@ public class TicketPool {
 
         String removedElement = (String) tickets.remove(0);
         sessionService.updateTotalTicket(sessionId, 1);
+        sessionService.updateTotalTicket(String.valueOf(sessionId));
         System.out.println("Removed : " + removedElement);
         notifyAll();
 

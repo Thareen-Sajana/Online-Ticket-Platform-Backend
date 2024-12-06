@@ -20,6 +20,7 @@ public class SessionService {
 
     private final SessionRepository repository;
     private final ObjectMapper objectMapper;
+    private final WebSocketService webSocketService;
 
     public void saveSession(Session session) {
 
@@ -102,6 +103,13 @@ public class SessionService {
 
             repository.save(session.get());
         }
+    }
+
+    public void updateTotalTicket(String sessionId) {
+        Integer qty = webSocketService.fetchQtyForSession(sessionId);
+
+        System.out.println("\n\n\n\n\n\n\n\n*************** this is the QTY : " + qty);
+        webSocketService.sendQty(sessionId, qty);
     }
 
 

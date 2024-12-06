@@ -13,6 +13,7 @@ public class PurchaseHistory {
     private String date;
     private String category;
     private Double price;
+    private String imageType;
     private byte[] image;
 
 }

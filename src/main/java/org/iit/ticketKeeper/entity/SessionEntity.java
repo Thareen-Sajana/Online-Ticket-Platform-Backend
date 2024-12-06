@@ -2,9 +2,11 @@ package org.iit.ticketKeeper.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@ToString
 @Table(name = "session")
 public class SessionEntity {
 

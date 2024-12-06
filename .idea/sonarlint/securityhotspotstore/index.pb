@@ -44,8 +44,6 @@ n
 >src/main/java/org/iit/ticketKeeper/config/WebSocketConfig.java,9\8\9846a9b1971894f328764e57cb72838d39286c39
 a
 1src/main/java/org/iit/ticketKeeper/dto/Stock.java,a\8\a8ae1a5df154a6860901718ec12753cebeacc567
-x
-Hsrc/main/java/org/iit/ticketKeeper/controller/TradeWebSocketHandler.java,7\9\79b82084b86eee3a821573de4d17720a077fd782
 c
 3src/main/java/org/iit/ticketKeeper/dto/Session.java,0\c\0c367b4eea5f7a2ff0764dd00d6c57a15655262d
 l
@@ -124,3 +122,7 @@ k
 ;src/main/java/org/iit/ticketKeeper/dto/PurchaseHistory.java,0\7\07a7e5e0c8806a6756900ff343622ad32bee8525
 ~
 Nsrc/main/java/org/iit/ticketKeeper/controller/customer/PurchaseController.java,8\0\80a6c9f7c88d925e6832c8fccf6e58ea815291db
+p
+@src/main/java/org/iit/ticketKeeper/service/WebSocketService.java,2\3\23e33a8acbaf289ff7911b282d174a4cb0dcc2ac
+u
+Esrc/main/java/org/iit/ticketKeeper/dto/TotalTicketSocketResponse.java,9\4\943deac9e9f5048f0dec95f5c58e27bb8883dae7
