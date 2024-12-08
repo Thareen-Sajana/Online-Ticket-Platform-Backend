@@ -36,8 +36,6 @@ q
 Asrc/main/java/org/iit/ticketKeeper/controller/demoController.java,1\4\14af86ec6225962d666518fe0986abe3f24d89b5
 q
 Asrc/main/java/org/iit/ticketKeeper/controller/DemoController.java,8\6\86fb3d9c7ac786053aa124d6d809ad6599380189
-u
-Esrc/main/java/org/iit/ticketKeeper/controller/CustomerController.java,4\c\4c6e0e3b54adc7265241cd20b56452eaf0a2f3db
 s
 Csrc/main/java/org/iit/ticketKeeper/controller/VendorController.java,d\2\d2c4c7a9cf518b3025396e1cfd56d5edfd319a0e
 n
@@ -120,9 +118,15 @@ o
 ?src/main/java/org/iit/ticketKeeper/service/PurchaseService.java,3\4\347ae8fb4bf403d4fb1ce5b1be057d22709177e9
 k
 ;src/main/java/org/iit/ticketKeeper/dto/PurchaseHistory.java,0\7\07a7e5e0c8806a6756900ff343622ad32bee8525
-~
-Nsrc/main/java/org/iit/ticketKeeper/controller/customer/PurchaseController.java,8\0\80a6c9f7c88d925e6832c8fccf6e58ea815291db
 p
 @src/main/java/org/iit/ticketKeeper/service/WebSocketService.java,2\3\23e33a8acbaf289ff7911b282d174a4cb0dcc2ac
 u
 Esrc/main/java/org/iit/ticketKeeper/dto/TotalTicketSocketResponse.java,9\4\943deac9e9f5048f0dec95f5c58e27bb8883dae7
+~
+Nsrc/main/java/org/iit/ticketKeeper/controller/customer/CustomerController.java,d\4\d4fa7868a7f1e983860a39ac20f93e81d430680e
+v
+Fsrc/main/java/org/iit/ticketKeeper/controller/CustomerControllerg.java,8\3\83dc9e6aa6b68a18cd3e4ddb40eb36ccae5f4670
+m
+=src/main/java/org/iit/ticketKeeper/service/ReportService.java,2\5\25509cb32ce306d96c4839d4a53c7293efce29a7
+j
+:src/main/java/org/iit/ticketKeeper/dto/ReportResponse.java,8\4\849d9ff5a0f84777e23c27f11f83a2946c6d6123

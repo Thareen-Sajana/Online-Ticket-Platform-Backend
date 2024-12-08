@@ -5,9 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.iit.ticketKeeper.dto.Session;
 import org.iit.ticketKeeper.dto.SessionManage;
 import org.iit.ticketKeeper.dto.User;
+import org.iit.ticketKeeper.entity.PurchaseEntity;
 import org.iit.ticketKeeper.entity.SessionEntity;
+import org.iit.ticketKeeper.entity.UserEntity;
+import org.iit.ticketKeeper.protection.BuyDetailProtection;
 import org.iit.ticketKeeper.protection.SessionManageProjection;
+import org.iit.ticketKeeper.repository.PurchaseRepository;
 import org.iit.ticketKeeper.repository.SessionRepository;
+import org.iit.ticketKeeper.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +26,8 @@ public class SessionService {
     private final SessionRepository repository;
     private final ObjectMapper objectMapper;
     private final WebSocketService webSocketService;
+    private final PurchaseRepository purchaseRepository;
+    private final UserRepository userRepository;
 
     public void saveSession(Session session) {
 
@@ -113,5 +120,30 @@ public class SessionService {
     }
 
 
+    public String customerType(String email) {
+        Double total = 0.0;
 
+        Optional<UserEntity> user = userRepository.findByEmail(email);
+
+        if(user.isEmpty()) return "Not a user";
+
+        if(user.isPresent()){
+
+            List<PurchaseEntity> purchases = purchaseRepository.findByUserId(user.get().getId());
+            if(!purchases.isEmpty()){
+
+                for (PurchaseEntity purchase : purchases) {
+                    Optional<BuyDetailProtection> session = repository.findBySessionId(purchase.getSessionId());
+
+                    if(session.isPresent()){
+                        total += (session.get().getTicketPrice() * purchase.getQty());
+                    }
+
+                }
+                if(total >= 50000) return "VIP Customer";
+            }
+
+        }
+        return "Regular Customer";
+    }
 }

@@ -10,4 +10,7 @@ public interface PurchaseRepository extends JpaRepository<PurchaseEntity, Long> 
 
     Optional<PurchaseEntity> findBySessionIdAndUserId(Long sessionId, Integer userId);
     List<PurchaseEntity> findByUserId(Integer userId);
+
+    List<PurchaseEntity> findBySessionId(Long sessionId);
+
 }

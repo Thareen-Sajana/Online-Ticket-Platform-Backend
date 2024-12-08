@@ -4,11 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iit.ticketKeeper.ProducerConsumer.Consumer;
 import org.iit.ticketKeeper.ProducerConsumer.Producer;
 import org.iit.ticketKeeper.ProducerConsumer.TicketPool;
-import org.iit.ticketKeeper.dto.Buy;
-import org.iit.ticketKeeper.dto.Session;
-import org.iit.ticketKeeper.dto.SessionManage;
-import org.iit.ticketKeeper.dto.User;
+import org.iit.ticketKeeper.dto.*;
 import org.iit.ticketKeeper.service.PurchaseService;
+import org.iit.ticketKeeper.service.ReportService;
 import org.iit.ticketKeeper.service.SessionService;
 import org.iit.ticketKeeper.service.WebSocketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +34,9 @@ public class SessionController {
 
     @Autowired
     private PurchaseService purchaseService;
+
+    @Autowired
+    private ReportService reportService;
 
     @Autowired
     private WebSocketService webSocketService;
@@ -211,9 +212,22 @@ public class SessionController {
 //        ticketWebSocketHandler.broadcastTicketUpdate(totalTickets);
 //    }
 
+
+    @GetMapping("/report-data/{id}")
+    public ResponseEntity<Map<String , ReportResponse >> reportData(@PathVariable Long id){
+        System.out.println("this is id form report response : " + id.getClass().getName());
+        ReportResponse reportResponse = reportService.getReportData(id);
+        Map<String, ReportResponse> response = new HashMap<>();
+
+        response.put("data", reportResponse);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/hello")
     public String hello(){
         System.out.println("this is working ");
         return "Hello word";
     }
+
+
 }

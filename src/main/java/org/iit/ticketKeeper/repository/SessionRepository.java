@@ -19,4 +19,5 @@ public interface SessionRepository extends JpaRepository<SessionEntity, Long> {
 
     Optional<BuyDetailProtection> findBySessionId(Long id);
 
+
 }

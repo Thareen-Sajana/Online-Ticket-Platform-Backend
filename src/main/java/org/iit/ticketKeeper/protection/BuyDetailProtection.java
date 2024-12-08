@@ -5,4 +5,6 @@ public interface BuyDetailProtection {
     Integer getTicketPoolCapacity();
     Integer getTicketReleaseRate();
     Integer getCustomerReleaseRate();
+    Double getTicketPrice();
+    String getEventName();
 }

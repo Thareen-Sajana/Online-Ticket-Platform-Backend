@@ -65,8 +65,9 @@ public class PurchaseService {
                 for (PurchaseEntity purchase : purchaseEntities) {
 
                     Optional<SessionEntity> session = sessionRepository.findById(purchase.getSessionId());
-                    System.out.println("this is session " + session.get().getEventName());
+
                     if (session.isPresent()){
+                        System.out.println("this is session " + session.get().getEventName());
                         PurchaseHistory purchaseHistory = new PurchaseHistory();
 
                         purchaseHistory.setId(purchase.getId());
