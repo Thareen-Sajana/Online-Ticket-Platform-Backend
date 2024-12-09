@@ -2,6 +2,7 @@ package org.iit.ticketKeeper.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.iit.ticketKeeper.dto.ReportResponse;
 import org.iit.ticketKeeper.dto.Session;
 import org.iit.ticketKeeper.dto.SessionManage;
 import org.iit.ticketKeeper.dto.User;
@@ -26,6 +27,7 @@ public class SessionService {
     private final SessionRepository repository;
     private final ObjectMapper objectMapper;
     private final WebSocketService webSocketService;
+    private final ReportService reportService;
     private final PurchaseRepository purchaseRepository;
     private final UserRepository userRepository;
 
@@ -146,4 +148,13 @@ public class SessionService {
         }
         return "Regular Customer";
     }
+
+    public void reportData(Long sessionId, ReportResponse reportResponse){
+        ReportResponse response = reportService.getReportData(sessionId);
+        response.setCurrentPoolCapacity(reportResponse.getCurrentPoolCapacity());
+        //System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\nthis is when buy :" +);
+        webSocketService.sendReportData(sessionId, response);
+    }
+
+
 }

@@ -223,6 +223,17 @@ public class SessionController {
         return ResponseEntity.ok(response);
     }
 
+    @MessageMapping("/generate-report")
+    public void generateReport(String sessionId) {
+        System.out.println("Generating report for session: " + sessionId);
+
+        // Simulate report generation (you can replace this with actual logic)
+        //ReportResponse reportData = new ReportResponse(sessionId, "Report generated successfully!", 100);
+
+        // Send the report data to "/report/<sessionId>"
+        //messagingTemplate.convertAndSend("/report/" + sessionId, reportData);
+    }
+
     @GetMapping("/hello")
     public String hello(){
         System.out.println("this is working ");

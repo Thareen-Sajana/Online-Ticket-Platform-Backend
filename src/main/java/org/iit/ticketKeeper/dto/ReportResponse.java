@@ -14,6 +14,7 @@ public class ReportResponse {
     private Double ticketPrice;
     private Integer totalTicket;
     private Integer ticketPoolCapacity;
+    private Integer currentPoolCapacity;
     private Double predictedEarning;
     private Double currentEarning;
 }

@@ -1,6 +1,7 @@
 package org.iit.ticketKeeper.ProducerConsumer;
 
 import lombok.ToString;
+import org.iit.ticketKeeper.dto.ReportResponse;
 import org.iit.ticketKeeper.service.SessionService;
 import org.iit.ticketKeeper.service.WebSocketService;
 
@@ -44,6 +45,10 @@ public class TicketPool {
 
         String add = "Ticket" + count++;
         tickets.add(add);
+        ReportResponse reportResponse = new ReportResponse();
+        reportResponse.setCurrentPoolCapacity(tickets.size());
+        reportResponse.setSessionId(sessionId);
+        sessionService.reportData(sessionId, reportResponse);
         System.out.println("Added : " + add);
     }
 
@@ -61,6 +66,11 @@ public class TicketPool {
         sessionService.updateTotalTicket(sessionId, 1);
         sessionService.updateTotalTicket(String.valueOf(sessionId));
         System.out.println("Removed : " + removedElement);
+
+        ReportResponse reportResponse = new ReportResponse();
+        reportResponse.setCurrentPoolCapacity(tickets.size());
+        reportResponse.setSessionId(sessionId);
+        sessionService.reportData(sessionId, reportResponse);
         notifyAll();
 
     }

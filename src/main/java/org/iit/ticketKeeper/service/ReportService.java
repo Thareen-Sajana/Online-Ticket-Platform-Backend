@@ -31,6 +31,8 @@ public class ReportService {
             response.setTicketPrice(session.get().getTicketPrice());
             response.setTicketPoolCapacity(session.get().getTicketPoolCapacity());
             response.setEventName(session.get().getEventName());
+            response.setTotalTicket(session.get().getTotalTicket());
+            response.setPredictedEarning(session.get().getTotalTicket() * session.get().getTicketPrice());
             totalTickets = session.get().getTotalTicket();
 
             List<PurchaseEntity> purchases = purchaseRepository.findBySessionId(sessionId);
@@ -49,5 +51,7 @@ public class ReportService {
 
         return response;
     }
+
+
 
 }

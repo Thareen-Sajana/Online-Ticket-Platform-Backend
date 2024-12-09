@@ -1,6 +1,7 @@
 package org.iit.ticketKeeper.service;
 
 import lombok.RequiredArgsConstructor;
+import org.iit.ticketKeeper.dto.ReportResponse;
 import org.iit.ticketKeeper.dto.TotalTicketSocketResponse;
 import org.iit.ticketKeeper.entity.SessionEntity;
 import org.iit.ticketKeeper.repository.SessionRepository;
@@ -27,5 +28,12 @@ public class WebSocketService {
             return session.get().getTotalTicket();
         }
         return 0;
+    }
+
+    public void sendReportData(Long sessionId, ReportResponse reportResponse){
+        // Simulate report generation (you can replace this with actual logic)
+        //ReportResponse reportData = new ReportResponse(sessionId, "Report generated successfully!", 100);
+        // Send the report data to "/report/<sessionId>"
+        messagingTemplate.convertAndSend("/report/" + sessionId, reportResponse);
     }
 }
